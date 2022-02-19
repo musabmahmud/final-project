@@ -23,11 +23,13 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.musab.expoejected"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "Here i'm making my final year project",
+    "githubUrl": "https://github.com/musabmahmud/final-project"
   }
 }

@@ -1,6 +1,5 @@
 import React,{ useState }  from 'react'
-import { StyleSheet, Text, View,TextInput,TouchableOpacity,Image} from 'react-native'
-import { KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View,TextInput,TouchableOpacity,Image,KeyboardAvoidingView} from 'react-native'
 
 import { initializeApp } from 'firebase/app';
 import { } from 'firebase/auth';
@@ -37,7 +36,7 @@ const LoginScreen = ({ navigation }) => {
                 console.log(user.email);
                 userInfo.success = true;
                 setUser(userInfo);
-                navigation.navigate('Home')
+                navigation.navigate('Shebok')
                 })
                 .catch((error) => {
                 console.log(error.message);
@@ -51,6 +50,9 @@ const LoginScreen = ({ navigation }) => {
     }
     return (
         <KeyboardAvoidingView style={styles.container} behavior="padding">
+            <View>
+                <Text style={styles.known}>Login Shabok</Text>
+            </View>
             <View style={styles.inputContainer}>
                 <Image style={styles.logo} source={require('./../assets/logo.png')} />
             </View>
@@ -62,6 +64,9 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button} onPress={handleSignIn}>
                     <Text style={styles.button}>Login</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonGoogle}>
+                    <Text style={styles.buttonGoogle}>Sign In with Google</Text>
                 </TouchableOpacity>
                 <Text style={styles.preferSign}>Forgot Password?</Text>
             </View>
@@ -81,11 +86,15 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems: 'center'
     },
+    known:{
+        paddingBottom: 10,
+        fontSize: 36,
+    },
     inputContainer:{
         width: '90%',
     },
     logo:{
-        marginBottom: 20,
+        marginVertical: 10,
         width: '100%',
         height: 200,
         justifyContent: "center",
@@ -102,7 +111,7 @@ const styles = StyleSheet.create({
         // flexDirection: "row",
         // flexWrap: "wrap",
         // justifyContent: "space-between",
-        marginTop: 20,
+        marginVertical: 10,
         borderBottomWidth: 1,
         borderColor: '#dcdee8',
     },
@@ -116,9 +125,19 @@ const styles = StyleSheet.create({
         width: '100%',
         color: 'white'
     },
+    buttonGoogle:{
+        backgroundColor: '#000',
+        borderRadius: 5,
+        paddingHorizontal: 2,
+        marginVertical: 10,
+        textAlign: 'center',
+        alignItems: 'center',
+        width: '100%',
+        color: '#fff'
+    },
     preferSign:{
         textAlign: 'center',
-        marginVertical: 10,
+        marginBottom: 10,
         fontSize: 12,
     }
 })
