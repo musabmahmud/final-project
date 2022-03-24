@@ -1,40 +1,129 @@
-import React from "react";
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import React, { useRef } from "react";
+// import { StatusBar } from 'expo-status-bar';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, TouchableOpacity, DrawerLayoutAndroid, View, ActivityIndicator } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import { } from 'firebase/auth';
+import SidebarScreen from "./SidebarScreen";
+import ChatScreen from "./ChatScreen";
 import HomeScreen from "./HomeScreen";
-import ServiceScreen from "./ServiceScreen";
-import DonationScreen from "./DonationScreen";
+import NotifyScreen from "./NotifyScreen";
+import SettingsScreen from "./SettingsScreen";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import ExploreScreen from "./ExploreScreen";
 
+const Tab = createBottomTabNavigator();
 
-const Stack = createNativeStackNavigator();
+const NavigateScreen = ({ navigation, route }) => {
 
-const NavigateScreen = ({navigation}) => {
-    
+  
+  const { user } = route.params;
+
+  const drawer = useRef(true);
 
   return (
-    <Stack.Navigator style={styles.container} initialRouteName="Shebok" screenOptions={{
-        headerShown: false,
-    }}>
-          {/* <Stack.Screen options={{headerShown:false}} name="Loading" component={LoadingScreen} /> */}
-          <Stack.Screen name="Shebok" component={HomeScreen} />
-          {/* <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
-          <Stack.Screen options={{ headerShown: false }} name="Signup" component={RegisterScreen} /> */}
-          <Stack.Screen name="Service" component={ServiceScreen} />
-          <Stack.Screen name="Donation" component={DonationScreen} />
-    </Stack.Navigator>
+
+
+    // <DrawerLayoutAndroid
+    //   ref={drawer}
+    //   drawerWidth={300}
+    //   drawerPosition="left"
+    //   renderNavigationView={SidebarScreen}>
+      <Tab.Navigator screenOptions={{
+        tabBarShowLabel: false,
+        showIcon: true,
+        tabBarHideOnKeyboard: true,
+        tabBarActiveTintColor: "#fff",
+        tabBarInactiveTintColor: "gray",
+        tabBarActiveBackgroundColor: '#2ff737',
+        tabBarStyle: {
+          height: 55,
+        },
+        tabBarItemStyle: {
+          borderRadius: 10,
+        },
+
+        // headerTitle: (props) => ( 
+        //   <Image
+        //     style={{ width: 200, height: 50 }}
+        //     source={require('./assets/logo.png')}
+        //     resizeMode='contain'
+        //   />
+        // ),
+        // headerTitleStyle: { flex: 1, textAlign: 'center' },
+
+        headerRight: ({ navigation }) => (
+          <TouchableOpacity onPress={() => drawer.current.openDrawer()}>
+            <Ionicons
+              name="md-menu-sharp"
+              color="green"
+              size={30}
+              style={styles.headerIcon}
+            />
+          </TouchableOpacity>
+        ),
+        headerTitleStyle: { color: '#00FF0F' },
+      }}>
+
+        <Tab.Screen name="Shebok"
+          component={HomeScreen} options={{
+            tabBarIcon: ({ focused, color }) => <Ionicons
+              name="home-outline"
+              focused={focused}
+              color={color}
+              size={26}
+            />
+          }} />
+        <Tab.Screen name="Chat" component={ChatScreen} options={{
+          tabBarIcon: ({ focused, color }) => <Ionicons
+            name="md-chatbubble-ellipses-outline"
+            focused={focused}
+            color={color}
+            size={26}
+          />, tabBarBadge: 3
+        }} />
+        <Tab.Screen name="Explore" component={ExploreScreen} options={{
+          tabBarIcon: ({ focused, color }) => <Ionicons
+            name="ios-cube-outline"
+            focused={focused}
+            color={color}
+            size={26}
+          />
+        }} />
+        <Tab.Screen name="Notification" component={NotifyScreen} options={{
+          tabBarIcon: ({ focused, color }) => <Ionicons
+            name="reader-outline"
+            focused={focused}
+            color={color}
+            size={26}
+          />, tabBarBadge: 3
+        }} />
+        <Tab.Screen name="Account" component={SettingsScreen} options={{
+          tabBarIcon: ({ focused, color }) => <Ionicons
+            name="md-person-outline"
+            // person-circle
+            focused={focused}
+            color={color}
+            size={26}
+          />
+        }} />
+
+      </Tab.Navigator>
+
+    // </DrawerLayoutAndroid>
   )
 }
 
 export default NavigateScreen
 
 const styles = StyleSheet.create({
-    container:{
-        backgroundColor: '#FFFF99',
-    }
+  headerIcon: {
+    color: '#00FF0F',
+    paddingRight: 15,
+  },
+  container: {
+    justifyContent: 'center',
+    flex: 1,
+    alignItems: 'center',
+  },
 })

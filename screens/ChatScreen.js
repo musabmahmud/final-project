@@ -10,11 +10,23 @@ const ChatScreen = () => {
       <View style={styles.chatBody}>
         <View style={styles.chatItem}>
           <View style={styles.chatILeft}>
-            <Image source={require('./../assets/user/3.jpg')} style={styles.chatImage} accessibilityLabel="asdlf" />
+            <Image source={require('./../assets/user/7.jpg')} style={styles.chatImage} accessibilityLabel="asdlf" />
           </View>
           <View style={styles.chatIBody}>
-            <Text style={styles.chatITextHeader}>lorem lorem lorem lorem</Text>
-            <Text style={styles.chatITextPara}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. lo</Text>
+            <Text style={styles.chatITextHeader}>Musab Mahmud</Text>
+            <Text style={styles.chatITextPara}>Hey, How are you??</Text>
+          </View>
+          <View style={styles.chatIRight}>
+            <Text style={styles.chatITextDate}>23 Jan, 22</Text>
+          </View>
+        </View>
+        <View style={styles.chatItem}>
+          <View style={styles.chatILeft}>
+            <Image source={require('./../assets/user/4.jpg')} style={styles.chatImage} accessibilityLabel="asdlf" />
+          </View>
+          <View style={styles.chatIBody}>
+            <Text style={styles.chatITextHeader}>Sadia Islam</Text>
+            <Text style={styles.chatITextPara}>I am a hardworking and trustworthy female looking for a job as a housekeeper or childminder</Text>
           </View>
           <View style={styles.chatIRight}>
             <Text style={styles.chatITextDate}>17 Jan, 22</Text>
@@ -22,11 +34,11 @@ const ChatScreen = () => {
         </View>
         <View style={styles.chatItem}>
           <View style={styles.chatILeft}>
-            <Image source={require('./../assets/user/1.png')} style={styles.chatImage} accessibilityLabel="asdlf" />
+            <Image source={require('./../assets/user/6.jpg')} style={styles.chatImage} accessibilityLabel="asdlf" />
           </View>
           <View style={styles.chatIBody}>
-            <Text style={styles.chatITextHeader}>sadf</Text>
-            <Text style={styles.chatITextPara}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. lo</Text>
+            <Text style={styles.chatITextHeader}>Farhana</Text>
+            <Text style={styles.chatITextPara}>My experiences as a homemaker for 20 years to create a comfortable, clean and welcoming home </Text>
           </View>
           <View style={styles.chatIRight}>
             <Text style={styles.chatITextDate}>17 Jan, 22</Text>
@@ -34,11 +46,23 @@ const ChatScreen = () => {
         </View>
         <View style={styles.chatItem}>
           <View style={styles.chatILeft}>
-            <Image source={require('./../assets/user/1.png')} style={styles.chatImage} accessibilityLabel="asdlf" />
+            <Image source={require('./../assets/user/8.jpg')} style={styles.chatImage} accessibilityLabel="asdlf" />
           </View>
           <View style={styles.chatIBody}>
-            <Text style={styles.chatITextHeader}>sadf</Text>
-            <Text style={styles.chatITextPara}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. lo</Text>
+            <Text style={styles.chatITextHeader}>Yeasin</Text>
+            <Text style={styles.chatITextPara}>Hey, Can I hire You??</Text>
+          </View>
+          <View style={styles.chatIRight}>
+            <Text style={styles.chatITextDate}>23 Jan, 22</Text>
+          </View>
+        </View>
+        <View style={styles.chatItem}>
+          <View style={styles.chatILeft}>
+            <Image source={require('./../assets/user/5.jpg')} style={styles.chatImage} accessibilityLabel="asdlf" />
+          </View>
+          <View style={styles.chatIBody}>
+            <Text style={styles.chatITextHeader}>Samia Islam</Text>
+            <Text style={styles.chatITextPara}>I am a hardworking and trustworthy female looking for a job as a housekeeper or childminder</Text>
           </View>
           <View style={styles.chatIRight}>
             <Text style={styles.chatITextDate}>17 Jan, 22</Text>
@@ -46,35 +70,11 @@ const ChatScreen = () => {
         </View>
         <View style={styles.chatItem}>
           <View style={styles.chatILeft}>
-            <Image source={require('./../assets/user/1.png')} style={styles.chatImage} accessibilityLabel="asdlf" />
+            <Image source={require('./../assets/user/10.jpg')} style={styles.chatImage} accessibilityLabel="asdlf" />
           </View>
           <View style={styles.chatIBody}>
-            <Text style={styles.chatITextHeader}>sadf</Text>
-            <Text style={styles.chatITextPara}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. lo</Text>
-          </View>
-          <View style={styles.chatIRight}>
-            <Text style={styles.chatITextDate}>17 Jan, 22</Text>
-          </View>
-        </View>
-        <View style={styles.chatItem}>
-          <View style={styles.chatILeft}>
-            <Image source={require('./../assets/user/1.png')} style={styles.chatImage} accessibilityLabel="asdlf" />
-          </View>
-          <View style={styles.chatIBody}>
-            <Text style={styles.chatITextHeader}>sadf</Text>
-            <Text style={styles.chatITextPara}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. lo</Text>
-          </View>
-          <View style={styles.chatIRight}>
-            <Text style={styles.chatITextDate}>17 Jan, 22</Text>
-          </View>
-        </View>
-        <View style={styles.chatItem}>
-          <View style={styles.chatILeft}>
-            <Image source={require('./../assets/user/1.png')} style={styles.chatImage} accessibilityLabel="asdlf" />
-          </View>
-          <View style={styles.chatIBody}>
-            <Text style={styles.chatITextHeader}>sadf</Text>
-            <Text style={styles.chatITextPara}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. lo</Text>
+            <Text style={styles.chatITextHeader}>Sahin Imran</Text>
+            <Text style={styles.chatITextPara}>My experiences as a homemaker for 20 years to create a comfortable, clean and welcoming home </Text>
           </View>
           <View style={styles.chatIRight}>
             <Text style={styles.chatITextDate}>17 Jan, 22</Text>
@@ -90,11 +90,12 @@ export default ChatScreen
 const styles = StyleSheet.create({
   bodyContent: {
     position: 'relative',
-    paddingTop: 10,
     backgroundColor: '#FFFF99',
   },
   chatBody: {
     position: 'relative',
+    paddingTop: 10,
+    paddingBottom: 50,
   },
   chatItem: {
     flexDirection: 'row',
@@ -103,8 +104,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
-    borderRadius: 10,
-    elevation: 4,
+    borderRadius: 5,
+    elevation: 3,
     shadowColor: '#eaeaea',
   },
   chatILeft: {

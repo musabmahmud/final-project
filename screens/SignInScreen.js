@@ -10,18 +10,13 @@ import {
     ScrollView,
     Alert
 } from 'react-native';
-
-import { Picker } from '@react-native-picker/picker';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
-const RegisterScreen = ({ navigation }) => {
+const SignInScreen = ({ navigation }) => {
 
-    const url = "https://final-project-shebok.herokuapp.com/api/accounts/signup";
-
-    const[name,setName] = useState('');
-    const[role,setRole] = useState('');
+    const url = "https://final-project-shebok.herokuapp.com/api/accounts/signin";
 
     const [data, setData] = useState({
         username: '',
@@ -91,10 +86,13 @@ const RegisterScreen = ({ navigation }) => {
 
     const [user, setUser] = useState('');
 
-    const signUpHandle = () => {
+    const loginHandle = (username, password) => {
+        // const foundUser = Users.filter( item => {
+        //     return userName == item.username && password == item.password;
+        // } );
 
-        if (data.username.length == 0 || data.password.length == 0 || role === ''|| name === '') {
-            Alert.alert('Wrong Input!', 'Every field must not be empty.', [
+        if (data.username.length == 0 || data.password.length == 0) {
+            Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
                 { text: 'Okay' }
             ]);
             return;
@@ -106,29 +104,26 @@ const RegisterScreen = ({ navigation }) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: name,
-                email: data.username,
-                password: data.password,
-                role: role,
+                email: username,
+                password: password
             }),
         })
             .then(response => response.json())
             .then((data) => setUser(data))
 
-        if (user === '') {
+        if (!user) {
             Alert.alert('Invalid User!', 'Username or password is incorrect.', [
                 { text: 'Okay' }
             ]);
             return;
         }
-        if (user) {
+        else {
             setData({
                 ...data,
                 username: '',
                 password: '',
-            });
-            setRole('');
-            setName('');
+            })
+            navigation.navigate('Home', {user})
         }
     }
 
@@ -151,39 +146,10 @@ const RegisterScreen = ({ navigation }) => {
                         backgroundColor: "#fff"
                     }]}
                 >
-                    <Text style={[styles.text_footer]}>Name</Text>
-                    <View style={styles.action}>
-                        <FontAwesome
-                            name="user-o"
-                            size={20}
-                        />
-                        <TextInput
-                            placeholder="Your Name"
-                            placeholderTextColor="#666666"
-                            style={[styles.textInput]}
-                            autoCapitalize="none"
-                            defaultValue={name} 
-                            onChangeText={text => setName(text)} 
-                            // onChangeText={(val) => textInputChange(val)}
-                            // onEndEditing={(e) => handleValidUser(e.nativeEvent.text)}
-                        />
-                        {data.check_textInputChange ?
-                            <Animatable.View
-                                animation="bounceIn"
-                            >
-                                <Feather
-                                    name="check-circle"
-                                    color="green"
-                                    size={20}
-                                />
-                            </Animatable.View>
-                            : null}
-                    </View>
-
                     <Text style={[styles.text_footer]}>Email</Text>
                     <View style={styles.action}>
                         <FontAwesome
-                            name="envelope-o"
+                            name="user-o"
                             size={20}
                         />
                         <TextInput
@@ -254,20 +220,6 @@ const RegisterScreen = ({ navigation }) => {
                     }
 
 
-
-                    <Text style={[styles.text_footer]}>Role</Text>
-                    <View style={styles.action}>
-                        <Picker
-                            selectedValue={role}
-                            style={{ height: 50, width: '100%' }}
-                            onValueChange={(itemValue, itemIndex) => setRole(itemValue)}
-                        >
-                            <Picker.Item label="Select User Option" value="" />
-                            <Picker.Item label="Buyer" value="buyer" />
-                            <Picker.Item label="Service Provider" value="service" />
-                        </Picker>
-                    </View>
-
                     <TouchableOpacity>
                         <Text style={{ color: '#2e2e2e', marginTop: 15 }}>Forgot password?</Text>
                     </TouchableOpacity>
@@ -278,22 +230,25 @@ const RegisterScreen = ({ navigation }) => {
                                 borderWidth: 1,
                                 marginTop: 15
                             }]}
-                            onPress={() => signUpHandle()}
+                            onPress={() => { loginHandle(data.username, data.password) }}
+                            // onPress={() => { navigation.navigate('Home'); }}
+                            
+            
                         ><Text style={[styles.textSign, {
                             color: '#00FF0F'
-                        }]}>Sign Up</Text>
+                        }]}>Sign In</Text>
 
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('SignIn')}
+                            onPress={() => navigation.navigate('SignUp')}
                             style={[{
                                 marginTop: 15
                             }]}
                         >
                             <Text style={[styles.textNavigate, {
                                 color: '#000'
-                            }]}>Already Have Account! Sign In?</Text>
+                            }]}>Haven't any Account! Sign Up?</Text>
                         </TouchableOpacity>
                     </View>
                 </Animatable.View>
@@ -302,7 +257,7 @@ const RegisterScreen = ({ navigation }) => {
     );
 };
 
-export default RegisterScreen;
+export default SignInScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -336,12 +291,11 @@ const styles = StyleSheet.create({
     },
     text_footer: {
         color: '#05375a',
-        fontSize: 18,
-        marginTop: 10,
+        fontSize: 18
     },
     action: {
         flexDirection: 'row',
-        marginTop: 15,
+        marginTop: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#f2f2f2',
         paddingBottom: 5

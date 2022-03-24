@@ -45,8 +45,14 @@ const SidebarScreen = () => {
         </View>
         <View>
           <TouchableOpacity style={styles.sidebarItem}>
+            <Icon style={styles.sideIcon} name="sign-in"/>
+            <Text style={styles.sideText}>Sign In</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity style={styles.sidebarItem}>
             <Icon style={styles.sideIcon} name="sign-out"/>
-            <Text style={styles.sideText}>Logout</Text>
+            <Text style={styles.sideText}>Sign Out</Text>
           </TouchableOpacity>
         </View>
     </ScrollView>
